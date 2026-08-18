@@ -60,7 +60,10 @@ class Library:
                 return True
         return False
 
+
     # Добавляем в конец класса Library
+
+=======
 
     def get_statistics(self) -> Dict[str, any]:
         """Получает статистику библиотеки"""
@@ -68,12 +71,14 @@ class Library:
         available = sum(1 for b in self.books if b.is_available)
         borrowed = total - available
 
+
         # Добавляем статистику по жанрам (новое поле)
         genres = {}
         for book in self.books:
             # Используем год как приблизительный жанр
             decade = (book.year // 10) * 10
             genres[f"{decade}s"] = genres.get(f"{decade}s", 0) + 1
+
 
         avg_rating = 0.0
         if total > 0:
@@ -85,6 +90,10 @@ class Library:
             'available': available,
             'borrowed': borrowed,
             'average_rating': avg_rating,
+
             'opened': self.__opened_at.strftime("%Y-%m-%d %H:%M"),
             'genres': genres  # новое поле
+
+            'opened': self.__opened_at.strftime("%Y-%m-%d %H:%M")
+
         }
