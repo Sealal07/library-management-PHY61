@@ -60,3 +60,21 @@ class Library:
                 return True
         return False
 
+    def get_statistics(self) -> Dict[str, any]:
+        """Получает статистику библиотеки"""
+        total = len(self.books)
+        available = sum(1 for b in self.books if b.is_available)
+        borrowed = total - available
+
+        avg_rating = 0.0
+        if total > 0:
+            total_rating = sum(b.get_average_rating() for b in self.books)
+            avg_rating = round(total_rating / total, 1)
+
+        return {
+            'total_books': total,
+            'available': available,
+            'borrowed': borrowed,
+            'average_rating': avg_rating,
+            'opened': self.__opened_at.strftime("%Y-%m-%d %H:%M")
+        }
